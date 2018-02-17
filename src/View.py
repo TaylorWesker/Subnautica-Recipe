@@ -9,7 +9,7 @@ class View(object):
         self.__b1.pack(side=LEFT, fill=BOTH, expand=1)
         self.__b2.pack(side=LEFT, fill=BOTH, expand=1)
         for i in CraftedItems:
-            self.__b1.insert(END, i)
+            self.__b1.insert(END, i[0])
         self.__b1.bind("<<ListboxSelect>>", self.ShowRecipe)
 
     def ShowRecipe(self,a):
@@ -41,5 +41,5 @@ class View(object):
         for i in itemlist:
             self.__b2.insert(END, i + " :")
             self.__b2.insert(END, "")
-            for j,k in zip(RequestToList("SELECT Material,Quantity FROM CraftedItems WHERE Name=\""+i+"\"",0)[0].split(","),RequestToList("SELECT Material,Quantity FROM CraftedItems WHERE Name=\""+i+"\"",1)[0].split(",")):
+            for j,k in zip(RequestToList("SELECT Material,Quantity FROM CraftedItems WHERE Name=\""+i+"\"")[0][0].split(","),RequestToList("SELECT Material,Quantity FROM CraftedItems WHERE Name=\""+i+"\"")[0][1].split(",")):
                 self.__b2.insert(END, j + " : " + k )
