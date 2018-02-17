@@ -20,7 +20,7 @@ def RawItemsRecipe(CraftedItem, r = None,num = 1):
     for Item,qte in zip(RequestToList("SELECT Material,Quantity FROM CraftedItems WHERE Name=\""+CraftedItem+"\"",0)[0].split(","),RequestToList("SELECT Material,Quantity FROM CraftedItems WHERE Name=\""+CraftedItem+"\"",1)[0].split(",")):
         if Item not in RawItems:
             # refaire l'operation
-            RawItemsRecipe(Item,r,ceil(int(qte)/RequestToList("SELECT Number FROM CraftedItems WHERE Name=\""+Item+"\"",0)[0]))
+            RawItemsRecipe(Item,r,ceil(int(qte)*num/RequestToList("SELECT Number FROM CraftedItems WHERE Name=\""+Item+"\"",0)[0]))
         else:
             # ajouter les RawItems
             if Item in r.keys():
