@@ -4,6 +4,8 @@ from tkinter import *
 class View(object):
     """docstring for View."""
     def __init__(self, master):
+        self.__e = Entry(master)
+        self.__e.pack()
         self.__b1 = Listbox(master)
         self.__b2 = Listbox(master)
         self.__b1.pack(side=LEFT, fill=BOTH, expand=1)
